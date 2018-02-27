@@ -24,3 +24,5 @@
             return False
         else:
             return all(num % int(i) == 0 for i in num_str)
+
+        
