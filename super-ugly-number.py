@@ -9,3 +9,4 @@ def nthSuperUglyNumber(self, n, primes):
         if ugly != uglies[-1]:
             uglies.append(ugly)
     return uglies[-1]
+
