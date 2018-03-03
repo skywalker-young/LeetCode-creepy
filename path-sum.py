@@ -46,3 +46,48 @@ class Solution(object):
     a = self.pathSum(root.left, sum - root.val) + \
         self.pathSum(root.right, sum - root.val)
     return [[root.val] + i for i in a]
+########################找到并输出符合指定值的数字，从根部往下走
+class Solution:
+
+
+# @param {TreeNode} root
+# @param {integer} sum
+# @return {integer[][]}
+ def pathSum(self, root, sum):
+    ans = []
+    self.dfs(root, sum, [], ans)
+    return ans
+
+
+ def dfs(self, root, sum, tmp, ans):
+    if not root:
+        return
+
+    if root.left == None and root.right == None and sum == root.val:
+        ans.append(tmp + [root.val])
+        return
+
+    self.dfs(root.left, sum - root.val, tmp + [root.val], ans)
+    self.dfs(root.right, sum - root.val, tmp + [root.val], ans)
+
+bb=[5,4,8,11,None,13,4,7,2,None,None,None,1]
+a=TreeNode(5)
+
+
+a.left=TreeNode(4)
+a.right =TreeNode(8)
+a.left.left =TreeNode(11)
+a.left.right =TreeNode(0)
+a.left.left.left =TreeNode(7)
+a.left.left.right =TreeNode(2)
+a.right.left =TreeNode(13)
+a.right.right =TreeNode(4)
+a.right.right.right =TreeNode(1)
+a.right.right.left =0
+a.right.left.left =TreeNode(99)
+a.right.left.right =TreeNode(0)
+
+
+b=Solution()
+c=b.pathSum(a,22)
+print(c)
