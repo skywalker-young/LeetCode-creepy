@@ -1,24 +1,22 @@
 def spiral(n):
-    def spiral_part(x, y, n):
-        if x == -1 and y == 0:
-            return -1
-        if y == (x + 1) and x < (n // 2):
-            return spiral_part(x - 1, y - 1, n - 1) + 4 * (n - y)
-        if x < (n - y) and y <= x:
-            return spiral_part(y - 1, y, n) + (x - y) + 1
-        if x >= (n - y) and y <= x:
-            return spiral_part(x, y - 1, n) + 1
-        if x >= (n - y) and y > x:
-            return spiral_part(x + 1, y, n) + 1
-        if x < (n - y) and y > x:
-            return spiral_part(x, y - 1, n) - 1
-
-    array = [[0] * n for j in range(n)]
-    for x in range(n):
-        for y in range(n):
-            array[x][y] = spiral_part(y, x, n)
-    return array
-
-
-for row in spiral(5):
-    print (" ".join("%2s" % x for x in row))
+    dx,dy = 1,0            # Starting increments
+    x,y = 0,0              # Starting location
+    myarray = [[None]* n for j in range(n)]
+    for i in xrange(n**2):
+        myarray[x][y] = i
+        nx,ny = x+dx, y+dy
+        if 0<=nx<n and 0<=ny<n and myarray[nx][ny] == None:
+            x,y = nx,ny
+        else:
+            dx,dy = -dy,dx
+            x,y = x+dx, y+dy
+    return myarray
+ 
+def printspiral(myarray):
+    n = range(len(myarray))
+    for y in n:
+        for x in n:
+            print "%2i" % myarray[x][y],
+        print
+ 
+printspiral(spiral(5)
