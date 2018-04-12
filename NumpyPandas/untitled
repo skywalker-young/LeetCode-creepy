@@ -1,0 +1,6 @@
+n=16
+check = {True: "Not Weird", False: "Weird"}
+
+a=n % 2 == 0 and (n in range(2, 6) or n > 20)
+print('{0} \n{1} \n{2}'.format((n + n), (n - 1), (n * n)))
+print(check[a])
