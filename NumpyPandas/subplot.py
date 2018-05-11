@@ -23,3 +23,6 @@ plt.subplots_adjust(   wspace=None, hspace=0)
 plt.grid(True)
 plt.legend()
 plt.show()
+##http://www.cnblogs.com/darkknightzh/p/6117528.html
+##
+##一些不同颜色和线条组成的选择
