@@ -1,5 +1,10 @@
 import  pandas as pd
 
+#https://www.cnblogs.com/chaosimple/p/4153083.html十分钟高低pandas
+
+#米筐
+#https://www.ricequant.com/community/topic/3558//6
+
 df1 = pd.DataFrame({'A': ['A0', 'A1', 'A2', 'A3'],
                     'B': ['B0', 'B1', 'B2', 'B3'],
                     } ,index=[0,1,2,3])
