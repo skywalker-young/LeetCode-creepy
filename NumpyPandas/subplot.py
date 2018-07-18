@@ -26,3 +26,13 @@ plt.show()
 ##http://www.cnblogs.com/darkknightzh/p/6117528.html
 ##
 ##一些不同颜色和线条组成的选择
+#画双坐标
+'''
+fig=plt.figure()
+
+ax1=fig.add_subplot(1,1,1)
+ax1.plot(a)
+ax2=ax1.twinx()
+ax2.plot(b)
+plt.show()
+'''
