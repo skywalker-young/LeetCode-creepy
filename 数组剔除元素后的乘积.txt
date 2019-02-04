@@ -1,0 +1,52 @@
+a1=[1,2,3]
+b=[]
+for outer_index in range(len(a1)):
+     num = 1
+     for inner_index, inner_value in enumerate(a1):
+         if inner_index == outer_index :
+             continue
+         num *= inner_value
+     b.append(num)
+print(b)
+
+2、想这样一个场景，我们要求的B中的每个数都是，原列表中去除它本身后，左右两部分相乘得来的。于是我们可以做这样的分治：
+
+计算所有可用的左右因子
+取相应左右因子的乘积
+存入列表B中
+计算所有左右因子，这里使用并行遍历zip(A, reversed(A))，然后我们就得到了一个时间复杂度为O(n)的算法，空间上使用了两个额外的列表进行存储
+--------------------- 
+作者：Iambraid 
+来源：CSDN 
+原文：https://blog.csdn.net/shadowkael/article/details/52024039 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+B = list()
+length_A = len(A)
+left_case_list = list()
+right_case_list = list()
+# 并行遍历求出所有左右因子并存入对应列表（其实这里的多求了一个列表中全部数的乘积）
+for (left_item, right_item) in zip(A[:-1], reversed(A)):    # reversed(A)也可以用 A[::-1]代替
+    if left_case_list and right_case_list:
+        left_case_list.append(left_case_list[-1] * left_item)
+        right_case_list.append(right_case_list[-1] * right_item)
+    else:
+        left_case_list.append(left_item)
+        right_case_list.append(right_item)
+# 求出对应的左右因子乘积，并存入列表B
+for i in range(length_A):
+    left_window = i - 1
+    right_window = length_A - i - 2
+    if left_window < 0:
+        left_num = 1
+    else:
+        left_num = left_case_list[left_window]
+    if right_window < 0:
+        right_num = 1
+    else:
+        right_num = right_case_list[right_window]
+    B.append(left_num * right_num)
+return B
+--------------------- 
+
+原文：https://blog.csdn.net/shadowkael/article/details/52024039 
