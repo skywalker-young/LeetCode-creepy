@@ -1,0 +1,13 @@
+def findNthDigit(n) :
+    num_digit, lo, hi = 1, 1, 9
+    see=(hi - lo + 1) * num_digit
+    while n > (hi - lo + 1) * num_digit:
+        n -= (hi - lo + 1) * num_digit
+        num_digit, lo, hi = num_digit + 1, lo * 10, lo * 100 - 1
+        see=(hi - lo + 1) * num_digit
+    ind_num, ind_digit = (n - 1) // num_digit, (n - 1) % num_digit
+    tmp=str(lo + ind_num)
+
+    return int(tmp[ind_digit])
+//寻找第几个数字是几
+//1，2，3，4，5，6，7，8，9，10，11，12中，第15个数字是2
