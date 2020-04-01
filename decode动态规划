@@ -23,56 +23,27 @@ Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
 '''
 
 class Solution:
+    
+    fib_mem = [1, 1]
+    
+    def fibonacci(self, n):
+        for _ in range(n - len(self.fib_mem) + 1): 
+            self.fib_mem.append(self.fib_mem[-1] + self.fib_mem[-2])
+        return self.fib_mem[n]
+        
     def numDecodings(self, s: str) -> int:
-        if (len(s) == 1):
-            if (s[0] == "0"):
-                return 0
-            else:
-                return 1
-        elif (len(s) == 0 or s[0] == "0"):
-            return 0
-        else:
-            pass
-            
-        right = None
-        middle = None
+        if not s or s[0] == '0': return 0
+        result = 1
+        fib = 1
         
-        
-        if (s[-1] == "0"):
-            if (s[-2] > "2" or s[-2] == "0"):
-                return 0
-            else:
-                right = 0
-                middle = 1
-        elif (s[-2] == "0"):
-            middle = 0
-            right = 1
-        elif (s[-2] == "1" or s[-2] == "2" and "0" < s[-1] <= "6"):
-            middle = 2
-            right = 1
-        else:
-            middle = 1
-            right = 1
+        for i in range(1, len(s)):
+            if s[i] == '0':
+                if s[i-1] != '1' and s[i-1] != '2': return 0
+                fib -= 1
+            elif s[i-1] == '1' or s[i-1] == '2' and int(s[i]) < 7:
+                fib += 1
+                continue
+            result *= self.fibonacci(fib)
+            fib = 1
+        result *= self.fibonacci(fib)
             
-        
-        for i in range(len(s) - 3, -1, -1):
-            if (s[i] != "0"):
-                if (s[i + 1] == "0" and s[i] > "2"):
-                    return 0
-                else:
-                    left = middle
-
-                    
-                if (s[i] == "1" or s[i] == "2" and "0" <= s[i + 1] <= "6"):
-                    left += right
-
-                right = middle
-                middle = left
-                left = 0
-            elif (s[i + 1] == "0"):
-                return 0
-            else:
-                right = middle
-                middle = 0
-            
-        return middle
