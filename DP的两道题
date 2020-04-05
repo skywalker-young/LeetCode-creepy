@@ -1,0 +1,61 @@
+##背包问题
+##
+#
+def knapSack(W, wt, val, n):
+    K = [[0 for x in range(W + 1)] for x in range(n + 1)]
+
+    # Build table K[][] in bottom up manner
+    for i in range(n + 1):
+        for w in range(W + 1):
+            if i == 0 or w == 0:
+                K[i][w] = 0
+            elif wt[i - 1] <= w:
+                a=w-wt[i-1]
+                print('剩余空间',a)
+                b= K[i - 1][w]
+                print(' 已经放置的价值？？',b)
+                K[i][w] = max(val[i - 1] + K[i - 1][w - wt[i - 1]], K[i - 1][w])
+            else:
+                K[i][w] = K[i - 1][w]
+
+    return K[n][W]
+
+val = [60, 100, 120,130]
+wt = [1, 2, 3,5]
+W = 6
+n = len(val)
+print(knapSack(W, wt, val, n))
+
+##
+##coin change
+#
+# Dynamic Programming Python implementation of Coin  
+# Change problem 
+def count(S, m, n): 
+  
+    # table[i] will be storing the number of solutions for 
+    # value i. We need n+1 rows as the table is constructed 
+    # in bottom up manner using the base case (n = 0) 
+    # Initialize all table values as 0 
+    table = [0 for k in range(n+1)] 
+  
+    # Base case (If given value is 0) 
+    table[0] = 1
+  
+    # Pick all coins one by one and update the table[] values 
+    # after the index greater than or equal to the value of the 
+    # picked coin 
+    for i in range(0,m): 
+        for j in range(S[i],n+1): 
+            table[j] += table[j-S[i]] 
+  
+    return table[n] 
+  
+# Driver program to test above function 
+arr = [1, 2, 3] 
+m = len(arr) 
+n = 4
+x = count(arr, m, n) 
+print (x) 
+  
+# This code is contributed by Afzal Ansari 
