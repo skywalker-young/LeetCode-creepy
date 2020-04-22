@@ -1,0 +1,17 @@
+a='(1 1)'
+# print(a[3])
+def KnightJumps(str):
+    x=int(str[1])
+    y=int(str[3])
+    # print(x)
+    # print(y)
+    c=0
+    for dx in range(-2,3,1):
+        # print(dx)
+        for dy in range(-2,3,1):
+            if abs(dx*dy==2):
+                if (x+dx>=0 and x<=7 and y+dy>=0 and y<=7):
+                    c=c+1
+    return c
+
+print(KnightJumps(a))
