@@ -1,0 +1,17 @@
+
+data=['11111','10101','10101','11111']
+data=list(map(list,data))
+print(data)
+dict1={}
+for x in range(len(data)):
+    for y in range(len(data[0])):
+        if data[x][y]=='0':
+            for index,i in enumerate(dict1.values(),start=1):
+                if (x-1,y)in i or (x,y-1)in i:
+                    dict1[index].append((x,y))
+                    break;
+            else:
+                dict1[len(dict1)+1]=[(x,y)]
+for y in data:
+    print(y)
+print(len(dict1))
