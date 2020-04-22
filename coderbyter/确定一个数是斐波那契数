@@ -1,0 +1,14 @@
+from math import *
+a=[1,20,2,5]
+n=sum(a)
+if  sqrt(5*n**2+4)%1==0 or sqrt(5*n**2-4)%1==0:
+    print('that is we need',0)
+
+else :
+    c=0
+    while True:
+        c=c+1
+        if sqrt(5 * (n + c) ** 2 + 4) % 1 == 0 or sqrt(5 * (n + c) ** 2 - 4) % 1 == 0:
+            print('sfsff',c)
+            break
+   ##    （n-c）就是向下相邻的
